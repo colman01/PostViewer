@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class CommentsViewController: BaseViewController {
+class CommentsViewController: BaseViewController, UITableViewDelegate {
     
     var disposeBag = DisposeBag()
 
@@ -33,6 +33,7 @@ class CommentsViewController: BaseViewController {
         super.viewDidLoad()
         setupPost()
         getComments()
+        
 
     }
     
@@ -56,13 +57,33 @@ class CommentsViewController: BaseViewController {
                     print(error)
             }, onCompleted: {
                 
-                
+                self.setupTable()
                 
             }).disposed(by: self.disposeBag)
         }
         catch{
         }
         
+    }
+    
+    fileprivate func setupTable() {
+        DispatchQueue.main.async {
+            self.tableView.estimatedRowHeight = self.estimatedTableCellHeight
+            self.tableView.estimatedRowHeight = UITableView.automaticDimension
+            Observable.of(self.dataItems).bind(to: self.tableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, element, cell) in
+                cell.body.text = element.body
+                //            self.configCell(cell, element, row)
+            }
+            .disposed(by: self.disposeBag)
+            
+            
+            self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return estimatedTableCellHeight
     }
 
 }
