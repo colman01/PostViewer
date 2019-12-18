@@ -166,6 +166,7 @@
 				F385E77923AA45EE007C5C7A /* Login */,
 				F385E77123AA2C64007C5C7A /* Services */,
 				F385E76B23AA2A29007C5C7A /* Utilities */,
+				F385E75F23AA2559007C5C7A /* UIElements */,
 				F385E76823AA2863007C5C7A /* Model */,
 				F3EC385823AA88F7002E568F /* PostsAndComments */,
 				F385E72B23AA2085007C5C7A /* AppDelegate.swift */,
@@ -233,7 +234,6 @@
 		F385E76B23AA2A29007C5C7A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				F385E75F23AA2559007C5C7A /* UIElements */,
 				F385E76C23AA2A3C007C5C7A /* Constants.swift */,
 			);
 			path = Utilities;
