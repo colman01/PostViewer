@@ -167,9 +167,7 @@
 				F385E77123AA2C64007C5C7A /* Services */,
 				F385E76B23AA2A29007C5C7A /* Utilities */,
 				F385E76823AA2863007C5C7A /* Model */,
-				F385E76223AA26A9007C5C7A /* Posts */,
-				F385E78523AA6668007C5C7A /* FavPosts */,
-				F385E77623AA3C70007C5C7A /* Comments */,
+				F3EC385823AA88F7002E568F /* PostsAndComments */,
 				F385E72B23AA2085007C5C7A /* AppDelegate.swift */,
 				F385E72D23AA2085007C5C7A /* SceneDelegate.swift */,
 				F385E73123AA2085007C5C7A /* Main.storyboard */,
@@ -294,6 +292,16 @@
 				F385E78823AA67DE007C5C7A /* FavPostTableViewCell.swift */,
 			);
 			path = FavPosts;
+			sourceTree = "<group>";
+		};
+		F3EC385823AA88F7002E568F /* PostsAndComments */ = {
+			isa = PBXGroup;
+			children = (
+				F385E76223AA26A9007C5C7A /* Posts */,
+				F385E78523AA6668007C5C7A /* FavPosts */,
+				F385E77623AA3C70007C5C7A /* Comments */,
+			);
+			path = PostsAndComments;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
