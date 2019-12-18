@@ -42,6 +42,10 @@ class FavViewController: BaseViewController, UITableViewDelegate {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return estimatedTableCellHeight
+    }
+    
     fileprivate func loadItemsIntoTable() {
         tableView.dataSource = nil
         Observable.just(PostManager.shared.favPosts).bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: FavPostTableViewCell.self)) { (row, element : ClientModel, cell) in
@@ -60,10 +64,4 @@ class FavViewController: BaseViewController, UITableViewDelegate {
         viewController.viewModel = commentsViewModel
         self.present(viewController, animated: true, completion: nil)
     }
-    
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return estimatedTableCellHeight
-    }
-
 }

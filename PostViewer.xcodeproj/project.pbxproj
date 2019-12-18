@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		652B7A2AC79046C9F0E8DA34 /* Pods_PostViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7872FB29089D119D68D37B9A /* Pods_PostViewerTests.framework */; };
 		7C38148223446CD98C2CB239 /* Pods_PostViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 060639DD66C5AAABF1105ED0 /* Pods_PostViewer.framework */; };
+		F35768ED23AA8DE300D96669 /* PostModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35768EC23AA8DE300D96669 /* PostModelTest.swift */; };
 		F385E72C23AA2085007C5C7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E72B23AA2085007C5C7A /* AppDelegate.swift */; };
 		F385E72E23AA2085007C5C7A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E72D23AA2085007C5C7A /* SceneDelegate.swift */; };
 		F385E73023AA2085007C5C7A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E72F23AA2085007C5C7A /* LoginViewController.swift */; };
@@ -59,6 +60,7 @@
 		7872FB29089D119D68D37B9A /* Pods_PostViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PostViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC8C26A7AD4FCCC683FC38B /* Pods-PostViewerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostViewerTests.release.xcconfig"; path = "Target Support Files/Pods-PostViewerTests/Pods-PostViewerTests.release.xcconfig"; sourceTree = "<group>"; };
 		C0F117953F3D678B16BE28AE /* Pods-PostViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostViewer.release.xcconfig"; path = "Target Support Files/Pods-PostViewer/Pods-PostViewer.release.xcconfig"; sourceTree = "<group>"; };
+		F35768EC23AA8DE300D96669 /* PostModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModelTest.swift; sourceTree = "<group>"; };
 		F385E72823AA2085007C5C7A /* PostViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PostViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F385E72B23AA2085007C5C7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F385E72D23AA2085007C5C7A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			children = (
 				F385E74223AA2087007C5C7A /* PostViewerTests.swift */,
 				F385E74423AA2087007C5C7A /* Info.plist */,
+				F35768EC23AA8DE300D96669 /* PostModelTest.swift */,
 			);
 			path = PostViewerTests;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F385E74323AA2087007C5C7A /* PostViewerTests.swift in Sources */,
+				F35768ED23AA8DE300D96669 /* PostModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

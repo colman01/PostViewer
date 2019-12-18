@@ -12,7 +12,7 @@ import RxSwift
 class LoginViewController: BaseViewController {
 
     @IBOutlet weak var userIdInputField: UITextField!
-    var userId: Int = 2
+    var userId = ""
     
     @IBOutlet weak var loginButton: UIButton!
     
@@ -31,7 +31,7 @@ class LoginViewController: BaseViewController {
         userIdInputField.keyboardType = .numberPad
         userIdInputField.rx.controlEvent([.editingChanged])
         .asObservable().subscribe({ [unowned self] _ in
-            self.userId = Int(self.userIdInputField.text!) ?? -1
+            self.userId = self.userIdInputField.text!
         }).disposed(by: self.disposeBag)
     }
     
@@ -90,7 +90,7 @@ class LoginViewController: BaseViewController {
     
     fileprivate func displayAlert() {
         DispatchQueue.main.async {
-            let alertController = UIAlertController(title: "Login Failed", message: "Please try 1,2,3,4 or 5", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Login Failed", message: "Please try Bob,Alice,Tom,Andy or Al", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
                 
             }))

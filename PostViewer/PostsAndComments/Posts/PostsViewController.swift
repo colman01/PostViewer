@@ -16,9 +16,9 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
     
     var estimatedTableCellHeight : CGFloat = 120.0
     
-    
     var disposeBag = DisposeBag()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
@@ -43,6 +43,11 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
         
         
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return estimatedTableCellHeight
     }
     
     
@@ -78,9 +83,7 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
     }
     
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return estimatedTableCellHeight
-    }
+    
 
 
 

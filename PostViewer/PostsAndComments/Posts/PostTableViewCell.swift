@@ -28,7 +28,6 @@ class PostTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
             super.prepareForReuse()
-
             disposeBag = DisposeBag()
     }
     

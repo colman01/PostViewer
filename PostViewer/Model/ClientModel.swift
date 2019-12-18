@@ -10,12 +10,12 @@ import Foundation
 
 public struct ClientModel: Codable {
     var id: Int
-    var userId: Int
+    var userId: String
     var title: String
     var body: String
     var isFav: Bool
     
-    init(id: Int, userId: Int, title: String, body: String, isFav: Bool) {
+    init(id: Int, userId: String, title: String, body: String, isFav: Bool) {
         self.id = id
         self.userId = userId
         self.title = title

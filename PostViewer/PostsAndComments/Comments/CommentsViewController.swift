@@ -19,7 +19,6 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var favButton: UIButton!
     
-    
     @IBOutlet weak var tableView: UITableView!
     
     var estimatedTableCellHeight : CGFloat = 120.0
@@ -35,6 +34,7 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
     
     
     //MARK:- Setup Items
+    
     
     fileprivate func setupPost() {
         titleLabel.text = self.viewModel.post.title
@@ -61,8 +61,11 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
         }
         catch{
         }
-        
     }
+    
+    
+    //MARK:- Setup Table
+    
     
     fileprivate func setupTable() {
         DispatchQueue.main.async {
@@ -70,10 +73,9 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
             self.tableView.estimatedRowHeight = UITableView.automaticDimension
             Observable.of(self.dataItems).bind(to: self.tableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, element, cell) in
                 cell.body.text = element.body
-                //            self.configCell(cell, element, row)
+                cell.title.text = "Username"
             }
             .disposed(by: self.disposeBag)
-            
             
             self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
         }
