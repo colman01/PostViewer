@@ -2,13 +2,13 @@
     "comments": [
       {
         "postId": 1,
-        "title": "First Post",
-        "body":"first post body text",
+        "title": "First Comment",
+        "body":"first comment body text",
       },
       {
         "postId": 2,
-        "title": "Second Post",
-        "body":"second post body text",
+        "title": "Second Comment",
+        "body":"second comment body text",
       }
     ],
   "posts": [
