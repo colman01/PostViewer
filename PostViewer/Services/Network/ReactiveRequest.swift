@@ -17,7 +17,7 @@ public class RxRequest {
             URLSessionConfiguration.default)
     }
     
-    public func getData<ClientModel: Codable>(request: URLRequest)
+    public func getPosts<ClientModel: Codable>(request: URLRequest)
         -> Observable<ClientModel> {
             return Observable.create { observer in
                 let task = self.urlSession.dataTask(with: request) { (data,
@@ -28,9 +28,11 @@ public class RxRequest {
                     let statusCode = httpResponse.statusCode
                     do {
                         let dataToTransform = data ?? Data()
+                        
+                        let json1 = try JSONSerialization.jsonObject(with: dataToTransform, options: .allowFragments)
+                        
                         if statusCode == 200 {
-                            let objs = try self.jsonDecoder.decode(ClientModel.self, from:
-                                dataToTransform)
+                            let objs = try self.jsonDecoder.decode(ClientModel.self, from:dataToTransform)
                             observer.onNext(objs)
                         }
                         else {
@@ -48,4 +50,38 @@ public class RxRequest {
                 }
             }
     }
+    
+    public func getComments<CommentsModel: Codable>(request: URLRequest)
+         -> Observable<CommentsModel> {
+             return Observable.create { observer in
+                 let task = self.urlSession.dataTask(with: request) { (data,
+                     response, error) in
+                     
+                     guard let httpResponse = response as? HTTPURLResponse else { return }
+                     
+                     let statusCode = httpResponse.statusCode
+                     do {
+                         let dataToTransform = data ?? Data()
+                         
+                         let json1 = try JSONSerialization.jsonObject(with: dataToTransform, options: .allowFragments)
+                         
+                         if statusCode == 200 {
+                             let objs = try self.jsonDecoder.decode(CommentsModel.self, from: dataToTransform)
+                             observer.onNext(objs)
+                         }
+                         else {
+                             observer.onError(error!)
+                         }
+                     } catch {
+                         observer.onError(error)
+                     }
+                     
+                     observer.onCompleted()
+                 }
+                 task.resume()
+                 return Disposables.create {
+                     task.cancel()
+                 }
+             }
+     }
 }

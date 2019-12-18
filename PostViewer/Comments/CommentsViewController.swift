@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class CommentsViewController: BaseViewController {
+    
+    var disposeBag = DisposeBag()
 
     var viewModel : CommentsViewModel!
     
@@ -21,12 +24,15 @@ class CommentsViewController: BaseViewController {
     
     var estimatedTableCellHeight : CGFloat = 120.0
     
+    var dataItems : [CommentsModel] = []
+    
 //    tableView.estimatedRowHeight = self.estimatedTableCellHeight
 //    tableView.estimatedRowHeight = UITableView.automaticDimension
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPost()
+        getComments()
 
     }
     
@@ -37,15 +43,26 @@ class CommentsViewController: BaseViewController {
         favButton.isSelected = self.viewModel.post.isFav
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func getComments() {
+        let client = NetworkManager.shared
+        do{
+            try client.getCommentItems().subscribe(
+                onNext: { result in
+                    
+                    self.dataItems = result.filter { $0.id == self.viewModel.post.id }
+            },
+                onError: { error in
+                    print(error)
+            }, onCompleted: {
+                
+                
+                
+            }).disposed(by: self.disposeBag)
+        }
+        catch{
+        }
+        
     }
-    */
 
 }

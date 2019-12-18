@@ -8,7 +8,15 @@
 
 import Foundation
 
-struct CommentsModel {
-    var titel: String
+struct CommentsModel : Codable {
     var body: String
+    var id: Int
+    var postId: Int
+    
+    
+    init(userId: String, body: String, id: Int, postId: Int) {
+        self.body = body
+        self.id = id
+        self.postId = postId
+    }
 }

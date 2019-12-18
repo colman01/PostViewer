@@ -54,7 +54,6 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
         cell.favButton.rx.controlEvent(.touchUpInside)
             .asDriver()
             .drive(onNext: { (_) in
-                var item = PostManager.shared.posts[row]
                 if cell.favButton.isSelected {
                     cell.favButton.isSelected = false
                     PostManager.shared.posts[row].isFav = false
@@ -68,6 +67,7 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
         
     }
     
+    
     func presentCommentVC(_ model : ClientModel) {
         let commentsViewModel = CommentsViewModel()
         commentsViewModel.post = model
@@ -79,19 +79,9 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return estimatedTableCellHeight
     }
 
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

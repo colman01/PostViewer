@@ -42,7 +42,7 @@ class LoginViewController: BaseViewController {
             
             let client = NetworkManager.shared
                    do{
-                       try client.getDataItems().subscribe(
+                       try client.getPostItems().subscribe(
                            onNext: { result in
                             
                             self.filteredPosts = result.filter { $0.userId == self.userId }

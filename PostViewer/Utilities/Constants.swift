@@ -7,5 +7,6 @@
 //
 
 struct Constants {
-    static let jsonAddress = "https://my-json-server.typicode.com/colman01/posts/posts"
+    static let jsonPostsAddress = "https://my-json-server.typicode.com/colman01/postviewer/posts"
+    static let jsonCommentsAddress = "https://my-json-server.typicode.com/colman01/postviewer/comments"
 }
