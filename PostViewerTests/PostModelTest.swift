@@ -19,7 +19,7 @@ class PostModelTest: XCTestCase {
     }
 
     func testModel() {
-        var model = ClientModel()
+//        var model = ClientModel()
     }
 
     func testPerformanceExample() {

@@ -23,13 +23,53 @@ class PostViewerUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // UI tests must launch the application that they test.
+    func testApp() {
+
+        
         let app = XCUIApplication()
         app.launch()
+        app.textFields.element(boundBy: 0).tap()
+        app.textFields.element(boundBy: 0).typeText("Bob")
+        app.buttons["LOGIN"].tap()
+        
+        let tablesQuery = app.tables
+        XCTAssert(tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["first post with another change"]/*[[".cells.staticTexts[\"first post with another change\"]",".staticTexts[\"first post with another change\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.waitForExistence(timeout: 10))
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["first post with another change"]/*[[".cells.staticTexts[\"first post with another change\"]",".staticTexts[\"first post with another change\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.buttons["FAV"].tap()
+        app.staticTexts.element(boundBy: 1).swipeDown()
+        app.staticTexts.element(boundBy: 1).gentleSwipe(.down)
+        
+        XCTAssert(tablesQuery.children(matching: .cell).element(boundBy: 1).staticTexts["second post body text"].waitForExistence(timeout: 10))
+        tablesQuery.children(matching: .cell).element(boundBy: 1).staticTexts["second post body text"].tap()
+        
+        app.staticTexts.element(boundBy: 1).swipeDown()
+        app.staticTexts.element(boundBy: 1).gentleSwipe(.down)
+        
+        let cell = tablesQuery.children(matching: .cell).element(boundBy: 2)
+        XCTAssert(cell.staticTexts[" post body text"].waitForExistence(timeout: 10))
+        cell.staticTexts[" post body text"].tap()
+        app.staticTexts.element(boundBy: 1).gentleSwipe(.down)
+        
+        let tabBarsQuery = app.tabBars
+        let item2Button = tabBarsQuery.buttons["Item 2"]
+        item2Button.tap()
+        cell.staticTexts["second post body text"].tap()
+        app.staticTexts.element(boundBy: 1).gentleSwipe(.down)
+        
+        
+        let item1Button = tabBarsQuery.buttons["Item 1"]
+        item1Button.tap()
+        cell.buttons["Fav"].tap()
+        item2Button.tap()
+        item1Button.tap()
+        
+    }
+    
+    func customSwipe(refElement:XCUIElement,startdelxy:CGVector,enddeltaxy: CGVector){
+          let swipeStartPoint = refElement.coordinate(withNormalizedOffset: startdelxy)
+          let swipeEndPoint = refElement.coordinate(withNormalizedOffset: enddeltaxy)
+          swipeStartPoint.press(forDuration: 0.1, thenDragTo: swipeEndPoint)
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
     func testLaunchPerformance() {
@@ -41,3 +81,37 @@ class PostViewerUITests: XCTestCase {
         }
     }
 }
+
+extension XCUIElement {
+    enum Direction: Int {
+        case up, down, left, right
+    }
+
+    func gentleSwipe(_ direction: Direction) {
+        let half: CGFloat = 0.5
+        let adjustment: CGFloat = 8.25
+        let pressDuration: TimeInterval = 0.05
+
+        let lessThanHalf = half - adjustment
+        let moreThanHalf = half + adjustment
+
+        let centre = self.coordinate(withNormalizedOffset: CGVector(dx: half, dy: half))
+        let aboveCentre = self.coordinate(withNormalizedOffset: CGVector(dx: half, dy: lessThanHalf))
+        let belowCentre = self.coordinate(withNormalizedOffset: CGVector(dx: half, dy: moreThanHalf))
+        let leftOfCentre = self.coordinate(withNormalizedOffset: CGVector(dx: lessThanHalf, dy: half))
+        let rightOfCentre = self.coordinate(withNormalizedOffset: CGVector(dx: moreThanHalf, dy: half))
+
+        switch direction {
+        case .up:
+            centre.press(forDuration: pressDuration, thenDragTo: aboveCentre)
+        case .down:
+            centre.press(forDuration: pressDuration, thenDragTo: belowCentre)
+        case .left:
+            centre.press(forDuration: pressDuration, thenDragTo: leftOfCentre)
+        case .right:
+            centre.press(forDuration: pressDuration, thenDragTo: rightOfCentre)
+        }
+    }
+}
+
+
