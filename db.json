@@ -2,15 +2,17 @@
   "posts": [
     {
       "id": 1,
-      "title": "Post 1"
+      "title": "First Post",
+      "userId": 2,
+      "body":"first post body text",
+      "isFav":false
     },
     {
       "id": 2,
-      "title": "Post 2"
-    },
-    {
-      "id": 3,
-      "title": "Post 3"
+      "title": "Second Post",
+      "userId": 2,
+      "body":"second post body text",
+      "isFav":true
     }
   ],
   "comments": [
