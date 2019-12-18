@@ -73,7 +73,7 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
             self.tableView.estimatedRowHeight = UITableView.automaticDimension
             Observable.of(self.dataItems).bind(to: self.tableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, element, cell) in
                 cell.body.text = element.body
-                cell.title.text = "Username"
+                cell.title.text = PostManager.shared.posts.filter { $0.id == element.postId }.first?.userId
             }
             .disposed(by: self.disposeBag)
             
