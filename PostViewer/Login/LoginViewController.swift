@@ -28,7 +28,6 @@ class LoginViewController: BaseViewController {
     }
     
     fileprivate func setupTextField() {
-        userIdInputField.keyboardType = .numberPad
         userIdInputField.rx.controlEvent([.editingChanged])
         .asObservable().subscribe({ [unowned self] _ in
             self.userId = self.userIdInputField.text!
