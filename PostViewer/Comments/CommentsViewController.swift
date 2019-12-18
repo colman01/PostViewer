@@ -25,18 +25,16 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
     var estimatedTableCellHeight : CGFloat = 120.0
     
     var dataItems : [CommentsModel] = []
-    
-//    tableView.estimatedRowHeight = self.estimatedTableCellHeight
-//    tableView.estimatedRowHeight = UITableView.automaticDimension
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPost()
         getComments()
-        
-
     }
     
+    
+    //MARK:- Setup Items
     
     fileprivate func setupPost() {
         titleLabel.text = self.viewModel.post.title
@@ -45,7 +43,7 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
     }
     
     
-    func getComments() {
+    fileprivate func getComments() {
         let client = NetworkManager.shared
         do{
             try client.getCommentItems().subscribe(

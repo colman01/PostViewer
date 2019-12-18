@@ -29,8 +29,6 @@ public class RxRequest {
                     do {
                         let dataToTransform = data ?? Data()
                         
-                        let json1 = try JSONSerialization.jsonObject(with: dataToTransform, options: .allowFragments)
-                        
                         if statusCode == 200 {
                             let objs = try self.jsonDecoder.decode(ClientModel.self, from:dataToTransform)
                             observer.onNext(objs)
@@ -62,8 +60,6 @@ public class RxRequest {
                      let statusCode = httpResponse.statusCode
                      do {
                          let dataToTransform = data ?? Data()
-                         
-                         let json1 = try JSONSerialization.jsonObject(with: dataToTransform, options: .allowFragments)
                          
                          if statusCode == 200 {
                              let objs = try self.jsonDecoder.decode(CommentsModel.self, from: dataToTransform)

@@ -44,27 +44,13 @@ class LoginViewController: BaseViewController {
                    do{
                        try client.getPostItems().subscribe(
                            onNext: { result in
-                            
                             self.filteredPosts = result.filter { $0.userId == self.userId }
                        },
                            onError: { error in
                                print(error)
                        }, onCompleted: {
                         
-                        if self.filteredPosts.isEmpty {
-                            DispatchQueue.main.async {
-                                let alertController = UIAlertController(title: "Login Failed", message: "Please try 1,2,3,4 or 5", preferredStyle: .alert)
-                                alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
-                                    
-                                }))
-                                self.present(alertController, animated: true, completion: nil)
-                            }
-                            
-                        } else {
-                            self.setupPostManager()
-                            self.navigateToPosts()
-                            
-                        }
+                            self.displayAlertOrNavigateToPost()
                         
                        }).disposed(by: self.disposeBag)
                    }
@@ -76,17 +62,40 @@ class LoginViewController: BaseViewController {
     }
 
     
+    func displayAlertOrNavigateToPost() {
+        if self.filteredPosts.isEmpty {
+            displayAlert()
+            
+        } else {
+            self.setupPostManager()
+            self.navigateToPosts()
+            
+        }
+    }
+    
+    
     func setupPostManager() {
         PostManager.shared.posts = self.filteredPosts
         PostManager.shared.favPosts = self.filteredPosts.filter{ $0.isFav }
     }
+    
     
     fileprivate func navigateToPosts() {
         DispatchQueue.main.async {
             let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as UIViewController
             self.navigationController?.pushViewController(viewController, animated: true)
         }
-        
+    }
+    
+    
+    fileprivate func displayAlert() {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: "Login Failed", message: "Please try 1,2,3,4 or 5", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
+                
+            }))
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 
 }
