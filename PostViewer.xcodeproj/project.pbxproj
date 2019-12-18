@@ -14,7 +14,6 @@
 		F385E72E23AA2085007C5C7A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E72D23AA2085007C5C7A /* SceneDelegate.swift */; };
 		F385E73023AA2085007C5C7A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E72F23AA2085007C5C7A /* LoginViewController.swift */; };
 		F385E73323AA2085007C5C7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F385E73123AA2085007C5C7A /* Main.storyboard */; };
-		F385E73523AA2086007C5C7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F385E73423AA2086007C5C7A /* Assets.xcassets */; };
 		F385E73823AA2086007C5C7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F385E73623AA2086007C5C7A /* LaunchScreen.storyboard */; };
 		F385E74323AA2087007C5C7A /* PostViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E74223AA2087007C5C7A /* PostViewerTests.swift */; };
 		F385E74E23AA2087007C5C7A /* PostViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E74D23AA2087007C5C7A /* PostViewerUITests.swift */; };
@@ -66,7 +65,6 @@
 		F385E72D23AA2085007C5C7A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F385E72F23AA2085007C5C7A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F385E73223AA2085007C5C7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F385E73423AA2086007C5C7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F385E73723AA2086007C5C7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F385E73923AA2086007C5C7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F385E73E23AA2087007C5C7A /* PostViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PostViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,7 +172,6 @@
 				F385E72B23AA2085007C5C7A /* AppDelegate.swift */,
 				F385E72D23AA2085007C5C7A /* SceneDelegate.swift */,
 				F385E73123AA2085007C5C7A /* Main.storyboard */,
-				F385E73423AA2086007C5C7A /* Assets.xcassets */,
 				F385E73623AA2086007C5C7A /* LaunchScreen.storyboard */,
 				F385E73923AA2086007C5C7A /* Info.plist */,
 			);
@@ -416,7 +413,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F385E73823AA2086007C5C7A /* LaunchScreen.storyboard in Resources */,
-				F385E73523AA2086007C5C7A /* Assets.xcassets in Resources */,
 				F385E73323AA2085007C5C7A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
