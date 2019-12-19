@@ -33,36 +33,53 @@ class PostViewerUITests: XCTestCase {
         app.buttons["LOGIN"].tap()
         
         let tablesQuery = app.tables
+        let tabBarsQuery = app.tabBars
+        let favPosts = tabBarsQuery.buttons["Fav Posts"]
+        let posts = tabBarsQuery.buttons["Posts"]
+        let backBtn = app.navigationBars.element(boundBy: 0).buttons["Back"]
+        
         XCTAssert(tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["first post with another change"]/*[[".cells.staticTexts[\"first post with another change\"]",".staticTexts[\"first post with another change\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.waitForExistence(timeout: 10))
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["first post with another change"]/*[[".cells.staticTexts[\"first post with another change\"]",".staticTexts[\"first post with another change\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        app.buttons["FAV"].tap()
-        app.staticTexts.element(boundBy: 1).swipeDown()
-        app.staticTexts.element(boundBy: 1).gentleSwipe(.down)
+        
+        backBtn.tap()
         
         XCTAssert(tablesQuery.children(matching: .cell).element(boundBy: 1).staticTexts["second post body text"].waitForExistence(timeout: 10))
         tablesQuery.children(matching: .cell).element(boundBy: 1).staticTexts["second post body text"].tap()
         
-        app.staticTexts.element(boundBy: 1).swipeDown()
-        app.staticTexts.element(boundBy: 1).gentleSwipe(.down)
+        backBtn.tap()
         
         let cell = tablesQuery.children(matching: .cell).element(boundBy: 2)
         XCTAssert(cell.staticTexts[" post body text"].waitForExistence(timeout: 10))
-        cell.staticTexts[" post body text"].tap()
-        app.staticTexts.element(boundBy: 1).gentleSwipe(.down)
         
-        let tabBarsQuery = app.tabBars
-        let item2Button = tabBarsQuery.buttons["Item 2"]
-        item2Button.tap()
-        cell.staticTexts["second post body text"].tap()
-        app.staticTexts.element(boundBy: 1).gentleSwipe(.down)
-        
-        
-        let item1Button = tabBarsQuery.buttons["Item 1"]
-        item1Button.tap()
+        favPosts.tap()
+        posts.tap()
         cell.buttons["Fav"].tap()
-        item2Button.tap()
-        item1Button.tap()
+        favPosts.tap()
+        posts.tap()
         
+        app.navigationBars.element(boundBy: 0).buttons["Back"].tap()
+        enterUserName("Al")
+        posts.waitForExistence(timeout: 10)
+        backBtn.tap()
+        enterUserName("Alice")
+        posts.waitForExistence(timeout: 10)
+        backBtn.tap()
+        enterUserName("Tom")
+        posts.waitForExistence(timeout: 10)
+        backBtn.tap()
+        enterUserName("Alan")
+        
+        
+        
+    }
+    
+    
+    func enterUserName(_ name : String) {
+        let app = XCUIApplication()
+        app.launch()
+        app.textFields.element(boundBy: 0).tap()
+        app.textFields.element(boundBy: 0).typeText(name)
+        app.buttons["LOGIN"].tap()
     }
     
     func customSwipe(refElement:XCUIElement,startdelxy:CGVector,enddeltaxy: CGVector){

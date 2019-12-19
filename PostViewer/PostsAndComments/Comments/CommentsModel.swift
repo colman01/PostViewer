@@ -14,7 +14,7 @@ struct CommentsModel : Codable {
     var postId: Int
     
     
-    init(userId: String, body: String, id: Int, postId: Int) {
+    init(body: String, id: Int, postId: Int) {
         self.body = body
         self.id = id
         self.postId = postId

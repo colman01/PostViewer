@@ -60,7 +60,7 @@
             </objects>
             <point key="canvasLocation" x="-200.00000000000003" y="-169.41964285714286"/>
         </scene>
-        <!--Item 2-->
+        <!--Fav Posts-->
         <scene sceneID="3PB-uz-VA3">
             <objects>
                 <viewController id="ICt-9F-bhu" customClass="FavViewController" customModule="PostViewer" customModuleProvider="target" sceneMemberID="viewController">
@@ -107,7 +107,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="lqr-qA-mja"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="L8v-XR-r9w"/>
+                    <tabBarItem key="tabBarItem" title="Fav Posts" id="L8v-XR-r9w"/>
                     <connections>
                         <outlet property="tableView" destination="nB0-BU-k69" id="Q3B-2U-rBF"/>
                     </connections>
@@ -116,7 +116,7 @@
             </objects>
             <point key="canvasLocation" x="1788.4057971014495" y="154.6875"/>
         </scene>
-        <!--Item 1-->
+        <!--Posts-->
         <scene sceneID="Vnj-Lw-1bP">
             <objects>
                 <viewController id="bHZ-Es-hN1" customClass="PostsViewController" customModule="PostViewer" customModuleProvider="target" sceneMemberID="viewController">
@@ -174,7 +174,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XOr-UA-z6T"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="o9a-Dw-raS"/>
+                    <tabBarItem key="tabBarItem" title="Posts" id="o9a-Dw-raS"/>
                     <connections>
                         <outlet property="tableView" destination="9Wp-Bx-LPc" id="Ku1-Q9-YOC"/>
                     </connections>

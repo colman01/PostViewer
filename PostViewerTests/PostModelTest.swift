@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import PostViewer
 
 class PostModelTest: XCTestCase {
 
@@ -19,7 +20,33 @@ class PostModelTest: XCTestCase {
     }
 
     func testModel() {
-//        var model = ClientModel()
+        
+        let model = ClientModel(id: 1,userId: "user",title: "title", body: "body",isFav: false)
+        XCTAssertEqual(model.id, 1)
+        XCTAssertEqual(model.userId, "user")
+        XCTAssertEqual(model.title, "title")
+        XCTAssertEqual(model.body, "body")
+        XCTAssertEqual(model.isFav, false)
+        
+    }
+    
+    func testCommentViewModel() {
+        let viewModel = CommentsViewModel()
+        let model = ClientModel(id: 1,userId: "user",title: "title", body: "body",isFav: false)
+        viewModel.post = model
+        let entry = viewModel.post
+        XCTAssertEqual(entry?.id, 1)
+        XCTAssertEqual(entry?.userId, "user")
+        XCTAssertEqual(entry?.title, "title")
+        XCTAssertEqual(entry?.body, "body")
+        XCTAssertEqual(entry?.isFav, false)
+
+        let comment = CommentsModel(body: "body", id: 1, postId: 1)
+        viewModel.comments.append(comment)
+        let viewModelComment = viewModel.comments.first
+        XCTAssertEqual(viewModelComment?.id, 1)
+        XCTAssertEqual(viewModelComment?.postId, 1)
+        XCTAssertEqual(viewModelComment?.body, "body")
     }
 
     func testPerformanceExample() {

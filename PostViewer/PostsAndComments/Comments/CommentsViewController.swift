@@ -54,7 +54,7 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
             try client.getCommentItems().subscribe(
                 onNext: { result in
                     
-                    self.dataItems = result.filter { $0.postId == self.viewModel.post.id }
+                    self.viewModel.comments = result.filter { $0.postId == self.viewModel.post.id }
             },
                 onError: { error in
                     print(error)
@@ -76,7 +76,7 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
         DispatchQueue.main.async {
             self.tableView.estimatedRowHeight = self.estimatedTableCellHeight
             self.tableView.estimatedRowHeight = UITableView.automaticDimension
-            Observable.of(self.dataItems).bind(to: self.tableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, element, cell) in
+            Observable.of(self.viewModel.comments).bind(to: self.tableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, element, cell) in
                 cell.body.text = element.body
                 cell.title.text = PostManager.shared.posts.filter { $0.id == element.postId }.first?.userId
             }
