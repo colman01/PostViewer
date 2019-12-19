@@ -73,6 +73,18 @@ class PostViewerUITests: XCTestCase {
     }
     
     
+    func testSwipe() {
+        let app = XCUIApplication()
+        app.launch()
+        app.textFields.element(boundBy: 0).tap()
+        app.textFields.element(boundBy: 0).typeText("Bob")
+        app.buttons["LOGIN"].tap()
+        let tablesQuery = app.tables
+        XCTAssert(tablesQuery.staticTexts["first post with another change"].waitForExistence(timeout: 10))
+        tablesQuery.staticTexts["first post with another change"].gentleSwipe(.up)
+    }
+    
+    
     func enterUserName(_ name : String) {
         let app = XCUIApplication()
         app.launch()
@@ -80,14 +92,8 @@ class PostViewerUITests: XCTestCase {
         app.textFields.element(boundBy: 0).typeText(name)
         app.buttons["LOGIN"].tap()
     }
+
     
-    func customSwipe(refElement:XCUIElement,startdelxy:CGVector,enddeltaxy: CGVector){
-          let swipeStartPoint = refElement.coordinate(withNormalizedOffset: startdelxy)
-          let swipeEndPoint = refElement.coordinate(withNormalizedOffset: enddeltaxy)
-          swipeStartPoint.press(forDuration: 0.1, thenDragTo: swipeEndPoint)
-
-    }
-
     func testLaunchPerformance() {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
             // This measures how long it takes to launch your application.
