@@ -50,34 +50,34 @@ public class RxRequest {
     }
     
     public func getComments<CommentsModel: Codable>(request: URLRequest)
-         -> Observable<CommentsModel> {
-             return Observable.create { observer in
-                 let task = self.urlSession.dataTask(with: request) { (data,
-                     response, error) in
-                     
-                     guard let httpResponse = response as? HTTPURLResponse else { return }
-                     
-                     let statusCode = httpResponse.statusCode
-                     do {
-                         let dataToTransform = data ?? Data()
-                         
-                         if statusCode == 200 {
-                             let objs = try self.jsonDecoder.decode(CommentsModel.self, from: dataToTransform)
-                             observer.onNext(objs)
-                         }
-                         else {
-                             observer.onError(error!)
-                         }
-                     } catch {
-                         observer.onError(error)
-                     }
-                     
-                     observer.onCompleted()
-                 }
-                 task.resume()
-                 return Disposables.create {
-                     task.cancel()
-                 }
-             }
-     }
+        -> Observable<CommentsModel> {
+            return Observable.create { observer in
+                let task = self.urlSession.dataTask(with: request) { (data,
+                    response, error) in
+                    
+                    guard let httpResponse = response as? HTTPURLResponse else { return }
+                    
+                    let statusCode = httpResponse.statusCode
+                    do {
+                        let dataToTransform = data ?? Data()
+                        
+                        if statusCode == 200 {
+                            let objs = try self.jsonDecoder.decode(CommentsModel.self, from: dataToTransform)
+                            observer.onNext(objs)
+                        }
+                        else {
+                            observer.onError(error!)
+                        }
+                    } catch {
+                        observer.onError(error)
+                    }
+                    
+                    observer.onCompleted()
+                }
+                task.resume()
+                return Disposables.create {
+                    task.cancel()
+                }
+            }
+    }
 }

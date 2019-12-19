@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 class CommentTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var body: UILabel!
     
@@ -20,15 +20,14 @@ class CommentTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
     override func prepareForReuse() {
-            super.prepareForReuse()
-
-            disposeBag = DisposeBag()
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
-
+    
 }

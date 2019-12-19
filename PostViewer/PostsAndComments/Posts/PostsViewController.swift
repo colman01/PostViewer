@@ -11,13 +11,13 @@ import RxSwift
 import RxCocoa
 
 class PostsViewController: BaseViewController, UITableViewDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     var estimatedTableCellHeight : CGFloat = 120.0
     
     var disposeBag = DisposeBag()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
             self.configCell(cell, element, row)
         }
         .disposed(by: disposeBag)
-
+        
     }
     
     
@@ -95,7 +95,7 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
     
     
     
-
-
-
+    
+    
+    
 }

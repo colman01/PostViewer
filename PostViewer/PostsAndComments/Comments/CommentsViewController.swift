@@ -12,7 +12,7 @@ import RxSwift
 class CommentsViewController: BaseViewController, UITableViewDelegate {
     
     var disposeBag = DisposeBag()
-
+    
     var viewModel : CommentsViewModel!
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -24,7 +24,7 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
     var estimatedTableCellHeight : CGFloat = 120.0
     
     var dataItems : [CommentsModel] = []
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,5 +90,5 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return estimatedTableCellHeight
     }
-
+    
 }

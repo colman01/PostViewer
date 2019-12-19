@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 class LoginViewController: BaseViewController {
-
+    
     @IBOutlet weak var userIdInputField: UITextField!
     var userId = ""
     
@@ -29,37 +29,37 @@ class LoginViewController: BaseViewController {
     
     fileprivate func setupTextField() {
         userIdInputField.rx.controlEvent([.editingChanged])
-        .asObservable().subscribe({ [unowned self] _ in
-            self.userId = self.userIdInputField.text!
-        }).disposed(by: self.disposeBag)
+            .asObservable().subscribe({ [unowned self] _ in
+                self.userId = self.userIdInputField.text!
+            }).disposed(by: self.disposeBag)
     }
     
     fileprivate func setupButton() {
         self.loginButton.rx.controlEvent(.touchUpInside)
-        .asDriver()
-        .drive(onNext: {
-            
-            let client = NetworkManager.shared
-                   do{
-                       try client.getPostItems().subscribe(
-                           onNext: { result in
+            .asDriver()
+            .drive(onNext: {
+                
+                let client = NetworkManager.shared
+                do{
+                    try client.getPostItems().subscribe(
+                        onNext: { result in
                             self.filteredPosts = result.filter { $0.userId == self.userId }
-                       },
-                           onError: { error in
-                               print(error)
-                       }, onCompleted: {
+                    },
+                        onError: { error in
+                            print(error)
+                    }, onCompleted: {
                         
-                            self.displayAlertOrNavigateToPost()
+                        self.displayAlertOrNavigateToPost()
                         
-                       }).disposed(by: self.disposeBag)
-                   }
-                   catch{
-                   }
-        }, onCompleted: {
-            
-        }).disposed(by: self.disposeBag)
+                    }).disposed(by: self.disposeBag)
+                }
+                catch{
+                }
+            }, onCompleted: {
+                
+            }).disposed(by: self.disposeBag)
     }
-
+    
     
     func displayAlertOrNavigateToPost() {
         if self.filteredPosts.isEmpty {
@@ -96,6 +96,6 @@ class LoginViewController: BaseViewController {
             self.present(alertController, animated: true, completion: nil)
         }
     }
-
+    
 }
 
