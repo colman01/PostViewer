@@ -46,10 +46,6 @@ class LoginViewController: BaseViewController {
                 
             }).disposed(by: self.disposeBag)
     }
-    
-    
-    
 
-    
 }
 
