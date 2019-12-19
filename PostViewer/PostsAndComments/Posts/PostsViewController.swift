@@ -25,14 +25,15 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadItemsIntoTable()
+    }
+    
+    
     fileprivate func setupTable() {
         tableView.estimatedRowHeight = self.estimatedTableCellHeight
         tableView.estimatedRowHeight = UITableView.automaticDimension
-        
-        Observable.of(PostManager.shared.posts).bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: PostTableViewCell.self)) { (row, element, cell) in
-            self.configCell(cell, element, row)
-        }
-        .disposed(by: disposeBag)
         
         tableView.rx
             .modelSelected(ClientModel.self)
@@ -43,6 +44,14 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
         
         
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
+    }
+    
+    fileprivate func loadItemsIntoTable() {
+        tableView.dataSource = nil
+        Observable.just(PostManager.shared.posts).bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: PostTableViewCell.self)) { (row, element : ClientModel, cell) in
+            self.configCell(cell, element, row)
+        }
+        .disposed(by: disposeBag)
     }
     
     
@@ -79,7 +88,8 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
         
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Comments") as! CommentsViewController
         viewController.viewModel = commentsViewModel
-        self.present(viewController, animated: true, completion: nil)
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     

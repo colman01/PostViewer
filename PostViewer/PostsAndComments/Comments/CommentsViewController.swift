@@ -30,6 +30,13 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
         super.viewDidLoad()
         setupPost()
         getComments()
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     
@@ -39,7 +46,36 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
     fileprivate func setupPost() {
         titleLabel.text = self.viewModel.post.title
         bodyLabel.text = self.viewModel.post.body
-        favButton.isSelected = self.viewModel.post.isFav
+        
+        for i in 0..<PostManager.shared.posts.count {
+            if PostManager.shared.posts[i].id == self.viewModel.post.id {
+                favButton.isSelected = PostManager.shared.posts[i].isFav
+            }
+        }
+        
+        favButton.rx.controlEvent(.touchUpInside)
+        .asDriver()
+        .drive(onNext: { (_) in
+            if self.favButton.isSelected {
+                self.favButton.isSelected = false
+                self.viewModel.post.isFav = false
+                
+            } else {
+                self.favButton.isSelected = true
+                self.viewModel.post.isFav = true
+                var item = PostManager.shared.posts.filter { $0.id == self.viewModel.post.id}.first
+                item?.isFav = true
+            }
+            
+            for i in 0..<PostManager.shared.posts.count {
+                if PostManager.shared.posts[i].id == self.viewModel.post.id {
+                    PostManager.shared.posts[i].isFav = self.viewModel.post.isFav
+                }
+            }
+            
+        }, onCompleted: {
+            
+        }).disposed(by: self.disposeBag)
     }
     
     
