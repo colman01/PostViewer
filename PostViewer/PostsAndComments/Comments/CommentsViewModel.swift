@@ -7,8 +7,37 @@
 //
 
 import Foundation
+import RxSwift
 
 class CommentsViewModel {
     var post : ClientModel!
+    
     var comments: [CommentsModel] = []
+    
+    var disposeBag = DisposeBag()
+    
+    let itemsDownloaded = PublishSubject<()>()
+    
+    
+    func getComments() {
+        let client = NetworkManager.shared
+        do{
+            try client.getCommentItems().subscribe(
+                onNext: { result in
+                    
+                    self.comments = result.filter { $0.postId == self.post.id }
+            },
+                onError: { error in
+                    print(error)
+            }, onCompleted: {
+
+                self.itemsDownloaded.onCompleted()
+                
+            }).disposed(by: self.disposeBag)
+        }
+        catch{
+        }
+    }
+    
+    
 }

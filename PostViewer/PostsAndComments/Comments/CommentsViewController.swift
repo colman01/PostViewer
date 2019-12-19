@@ -30,7 +30,8 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         setupPost()
-        getComments()
+        setupSubsciption()
+        viewModel.getComments()
     }
     
     
@@ -49,28 +50,18 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
     }
     
     
-    fileprivate func getComments() {
-        let client = NetworkManager.shared
-        do{
-            try client.getCommentItems().subscribe(
-                onNext: { result in
-                    
-                    self.viewModel.comments = result.filter { $0.postId == self.viewModel.post.id }
-            },
-                onError: { error in
-                    print(error)
-            }, onCompleted: {
-                
-                self.setupTable()
-                
-            }).disposed(by: self.disposeBag)
-        }
-        catch{
-        }
-    }
-    
-    
     //MARK:- Setup Table
+    
+    fileprivate func setupSubsciption() {
+        viewModel.itemsDownloaded.subscribe(onNext: {
+        }, onError: { (Error) in
+        }, onCompleted: {
+            
+            self.setupTable()
+            
+        }) {
+        }.disposed(by: self.disposeBag)
+    }
     
     
     fileprivate func setupTable() {
