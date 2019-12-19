@@ -7,13 +7,104 @@
 //
 
 import Foundation
+import UIKit
+import RxSwift
 
 
 class LoginViewModel {
     
+    var navigationController: UINavigationController? = nil
+    
+    var disposeBag = DisposeBag()
+    
+    var userId = ""
+    
+    let alert = UIAlertController(title: nil, message: "Loading...", preferredStyle: .alert)
+    
+    
     func setUseId(_ userId : Int) {
         PostManager.shared.userId = userId
     }
+    
+    
+    func setupPostManager(_ posts : [ClientModel]) {
+        PostManager.shared.posts = posts
+        PostManager.shared.favPosts = posts.filter{ $0.isFav }
+    }
+    
+    
+    func getData() {
+        let client = NetworkManager.shared
+        do{
+            try client.getPostItems().subscribe(
+                onNext: { result in
+                    self.setupPostManager(result.filter { $0.userId == self.userId })
+                    DispatchQueue.main.async {
+
+                        
+
+                        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                        loadingIndicator.hidesWhenStopped = true
+                        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+                        loadingIndicator.startAnimating();
+
+                        self.alert.view.addSubview(loadingIndicator)
+                        self.navigationController!.present(self.alert, animated: true, completion: nil)
+                        
+                    }
+            },
+                onError: { error in
+                    print(error)
+            }, onCompleted: {
+                
+                self.displayAlertOrNavigateToPost()
+                
+            }).disposed(by: self.disposeBag)
+        }
+        catch{
+        }
+    }
+    
+    
+    func displayAlertOrNavigateToPost() {
+        if PostManager.shared.posts.isEmpty {
+            displayAlert()
+            
+        } else {
+
+            navigateToPosts()
+            
+        }
+    }
+    
+    
+    func navigateToPosts() {
+        DispatchQueue.main.async {
+//            self.alert.dismiss(animated: true, completion: nil)
+            self.alert.dismiss(animated: true) {
+                self.navigationController!.dismiss(animated: false, completion: nil)
+                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as UIViewController
+                self.navigationController!.pushViewController(viewController, animated: true)
+            }
+            
+        }
+    }
+    
+    
+    func displayAlert() {
+        DispatchQueue.main.async {
+            self.alert.dismiss(animated: true) {
+                self.navigationController!.dismiss(animated: false, completion: nil)
+                let alertController = UIAlertController(title: "Login Failed", message: "Please try Bob,Alice,Tom,Andy or Al", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
+                    
+                }))
+                self.navigationController?.present(alertController, animated: true, completion: nil)
+            }
+            
+        }
+    }
+    
     
     
 }
