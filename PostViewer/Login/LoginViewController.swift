@@ -15,8 +15,6 @@ class LoginViewController: BaseViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     
-    var filteredPosts: [ClientModel] = []
-    
     let disposeBag = DisposeBag()
     
     var viewModel = LoginViewModel()

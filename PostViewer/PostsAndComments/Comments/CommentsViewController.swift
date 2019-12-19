@@ -28,6 +28,7 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
         setupPost()
         getComments()
     }
