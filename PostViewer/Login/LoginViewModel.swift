@@ -43,7 +43,7 @@ class LoginViewModel {
                     
             },
                 onError: { error in
-                    print(error)
+                    self.displayLoadingAlert()
             }, onCompleted: {
                 
                 self.displayAlertOrNavigateToPost()
@@ -97,6 +97,19 @@ class LoginViewModel {
             self.alert.dismiss(animated: true) {
                 self.navigationController!.dismiss(animated: false, completion: nil)
                 let alertController = UIAlertController(title: "Login Failed", message: "Please try Bob,Alice,Tom,Andy or Al", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
+                    
+                }))
+                self.navigationController?.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    fileprivate func displayLoadingAlert() {
+        DispatchQueue.main.async {
+            self.alert.dismiss(animated: true) {
+                self.navigationController!.dismiss(animated: false, completion: nil)
+                let alertController = UIAlertController(title: "Error with the Data", message: "There was a problem loading the data", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
                     
                 }))

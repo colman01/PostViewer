@@ -18,7 +18,8 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
     
     var disposeBag = DisposeBag()
     
-    let dataItems = BehaviorSubject<[ClientModel]>(value: PostManager.shared.posts)
+    let dataSource = BehaviorRelay(value: [ClientModel]())
+
     
     
     override func viewDidLoad() {
@@ -29,6 +30,7 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        dataSource.accept(PostManager.shared.posts)
     }
     
     
@@ -43,17 +45,15 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
             })
             .disposed(by: disposeBag)
         
-        
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
     }
     
     
     fileprivate func loadItemsIntoTable() {
-        tableView.dataSource = nil
-        dataItems.bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: PostTableViewCell.self)) { (row, element : ClientModel, cell) in
-            self.configCell(cell, element, row)
-        }
-        .disposed(by: disposeBag)
+        self.dataSource.bind(to: self.tableView.rx.items(cellIdentifier: "cell", cellType: PostTableViewCell.self)) { index, model, cell in
+             self.configCell(cell, model, index)
+        }.disposed(by: self.disposeBag)
+    
     }
     
     
@@ -79,7 +79,7 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
                 }
             }, onCompleted: {
                 
-            }).disposed(by: self.disposeBag)
+            }).disposed(by: cell.disposeBag)
         
     }
     
