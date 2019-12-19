@@ -59,18 +59,17 @@ class PostViewerUITests: XCTestCase {
         
         app.navigationBars.element(boundBy: 0).buttons["Back"].tap()
         enterUserName("Al")
-        posts.waitForExistence(timeout: 10)
+        XCTAssert(posts.waitForExistence(timeout: 10))
         backBtn.tap()
         enterUserName("Alice")
-        posts.waitForExistence(timeout: 10)
+        XCTAssert(posts.waitForExistence(timeout: 10))
         backBtn.tap()
         enterUserName("Tom")
-        posts.waitForExistence(timeout: 10)
+        XCTAssert(posts.waitForExistence(timeout: 10))
         backBtn.tap()
         enterUserName("Alan")
-        
-        
-        
+        app.alerts["Login Failed"].staticTexts["Login Failed"].waitForExistence(timeout: 10)
+    
     }
     
     
