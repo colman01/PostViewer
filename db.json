@@ -51,7 +51,7 @@
     },
     {
       "id": 8,
-      "title": "Second Post",
+      "title": "First Post",
       "userId": "Alice",
       "body":" post body text",
       "isFav":true
@@ -65,43 +65,43 @@
     },
     {
       "id": 10,
-      "title": "Second Post",
-      "userId": "Alice",
+      "title": "Post",
+      "userId": "Tom",
       "body":"second post body text",
       "isFav":true
     },
     {
       "id": 11,
       "title": "Second Post",
-      "userId": "Alice",
+      "userId": "Tom",
       "body":" post body text",
       "isFav":false
     },
     {
       "id": 12,
-      "title": "Second Post",
-      "userId": "Alice",
+      "title": "First Post",
+      "userId": "Andy",
       "body":" post body text",
       "isFav":true
     },
     {
       "id": 13,
-      "title": "Second Post",
-      "userId": "Alice",
+      "title": "Post title",
+      "userId": "Andy",
       "body":" post body text",
       "isFav":false
     },
     {
       "id": 14,
-      "title": "Second Post",
-      "userId": "Alice",
+      "title": "Post",
+      "userId": "Al",
       "body":" post body text",
       "isFav":false
     },
     {
       "id": 15,
       "title": "Second Post",
-      "userId": "Alice",
+      "userId": "Al",
       "body":" post body text",
       "isFav":false
     }
@@ -115,9 +115,80 @@
     },
     {
       "id": 2,
+      "body": "another comment",
+      "postId": 1
+    },
+    {
+      "id": 3,
       "body": "some comment",
       "postId": 1
+    },
+    {
+      "id": 4,
+      "body": "another comment",
+      "postId": 1
+    },
+    {
+      "id": 5,
+      "body": "some comment",
+      "postId": 2
+    },
+    {
+      "id": 6,
+      "body": "another comment",
+      "postId": 2
+    },
+    {
+      "id": 7,
+      "body": "some comment",
+      "postId": 2
+    },
+    {
+      "id": 8,
+      "body": "another comment",
+      "postId": 3
+    },
+    {
+      "id": 9,
+      "body": "some comment",
+      "postId": 3
+    },
+    {
+      "id": 10,
+      "body": "another comment",
+      "postId": 3
+    },
+    {
+      "id": 11,
+      "body": "another comment",
+      "postId": 4
+    },
+    {
+      "id": 12,
+      "body": "some comment",
+      "postId": 4
+    },
+    {
+      "id": 13,
+      "body": "another comment",
+      "postId": 4
+    },
+    {
+      "id": 14,
+      "body": "some comment",
+      "postId": 5
+    },
+    {
+      "id": 15,
+      "body": "another comment",
+      "postId": 5
+    },
+    {
+      "id": 16,
+      "body": "some comment",
+      "postId": 5
     }
+    
   ],
   "profile": {
     "name": "typicode"
