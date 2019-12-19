@@ -68,7 +68,7 @@ class PostViewerUITests: XCTestCase {
         XCTAssert(posts.waitForExistence(timeout: 10))
         backBtn.tap()
         enterUserName("Alan")
-        app.alerts["Login Failed"].staticTexts["Login Failed"].waitForExistence(timeout: 10)
+        XCTAssert(app.alerts["Login Failed"].staticTexts["Login Failed"].waitForExistence(timeout: 10))
     
     }
     
