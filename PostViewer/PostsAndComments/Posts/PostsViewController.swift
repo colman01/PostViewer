@@ -27,14 +27,14 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadItemsIntoTable()
+        
     }
     
     
     fileprivate func setupTable() {
         tableView.estimatedRowHeight = self.estimatedTableCellHeight
         tableView.estimatedRowHeight = UITableView.automaticDimension
-        
+        loadItemsIntoTable()
         tableView.rx
             .modelSelected(ClientModel.self)
             .subscribe(onNext:  { value in
@@ -52,6 +52,7 @@ class PostsViewController: BaseViewController, UITableViewDelegate {
             self.configCell(cell, element, row)
         }
         .disposed(by: disposeBag)
+
     }
     
     

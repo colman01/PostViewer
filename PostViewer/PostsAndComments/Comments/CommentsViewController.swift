@@ -50,30 +50,6 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
                 favButton.isSelected = PostManager.shared.posts[i].isFav
             }
         }
-        
-        favButton.rx.controlEvent(.touchUpInside)
-        .asDriver()
-        .drive(onNext: { (_) in
-            if self.favButton.isSelected {
-                self.favButton.isSelected = false
-                self.viewModel.post.isFav = false
-                
-            } else {
-                self.favButton.isSelected = true
-                self.viewModel.post.isFav = true
-                var item = PostManager.shared.posts.filter { $0.id == self.viewModel.post.id}.first
-                item?.isFav = true
-            }
-            
-            for i in 0..<PostManager.shared.posts.count {
-                if PostManager.shared.posts[i].id == self.viewModel.post.id {
-                    PostManager.shared.posts[i].isFav = self.viewModel.post.isFav
-                }
-            }
-            
-        }, onCompleted: {
-            
-        }).disposed(by: self.disposeBag)
     }
     
     
@@ -83,7 +59,7 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
             try client.getCommentItems().subscribe(
                 onNext: { result in
                     
-                    self.dataItems = result.filter { $0.id == self.viewModel.post.id }
+                    self.dataItems = result.filter { $0.postId == self.viewModel.post.id }
             },
                 onError: { error in
                     print(error)
