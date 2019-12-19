@@ -46,7 +46,8 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
     fileprivate func setupPost() {
         titleLabel.text = self.viewModel.post.title
         bodyLabel.text = self.viewModel.post.body
-        favButton.isSelected = PostManager.shared.posts.filter{$0.id == self.viewModel.post.id}.first!.isFav
+        // put into model
+        favButton.isSelected = self.viewModel.isFav
     }
     
     

@@ -10,7 +10,13 @@ import Foundation
 import RxSwift
 
 class CommentsViewModel {
-    var post : ClientModel!
+    var post : ClientModel! {
+        didSet {
+            isFav = PostManager.shared.posts.filter{$0.id == post.id}.first!.isFav
+        }
+    }
+    
+    var isFav:Bool = false
     
     var comments: [CommentsModel] = []
     
@@ -38,6 +44,5 @@ class CommentsViewModel {
         catch{
         }
     }
-    
     
 }
