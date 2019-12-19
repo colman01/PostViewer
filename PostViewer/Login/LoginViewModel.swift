@@ -86,6 +86,7 @@ class LoginViewModel {
                 self.navigationController!.dismiss(animated: false, completion: nil)
                 let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as UIViewController
                 self.navigationController!.pushViewController(viewController, animated: true)
+                
             }
         }
     }

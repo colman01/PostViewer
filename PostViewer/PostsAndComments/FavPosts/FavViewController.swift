@@ -47,12 +47,18 @@ class FavViewController: BaseViewController, UITableViewDelegate {
     }
     
     fileprivate func loadItemsIntoTable() {
-        tableView.dataSource = nil
-        Observable.just(PostManager.shared.favPosts).bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: FavPostTableViewCell.self)) { (row, element : ClientModel, cell) in
-            cell.title.text =  "\(element.title)"
-            cell.body.text =  "\(element.body)"
+        if PostManager.shared.favPosts.isEmpty {
+            self.tableView.isHidden = true
+        } else {
+            self.tableView.isHidden = false
+            tableView.dataSource = nil
+            Observable.just(PostManager.shared.favPosts).bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: FavPostTableViewCell.self)) { (row, element : ClientModel, cell) in
+                cell.title.text =  "\(element.title)"
+                cell.body.text =  "\(element.body)"
+            }
+            .disposed(by: disposeBag)
         }
-        .disposed(by: disposeBag)
+        
     }
     
     
@@ -62,6 +68,6 @@ class FavViewController: BaseViewController, UITableViewDelegate {
         
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Comments") as! CommentsViewController
         viewController.viewModel = commentsViewModel
-        self.present(viewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

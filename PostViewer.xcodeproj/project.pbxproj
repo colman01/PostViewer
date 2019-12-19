@@ -30,7 +30,6 @@
 		F385E77B23AA4603007C5C7A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E77A23AA4603007C5C7A /* LoginViewModel.swift */; };
 		F385E77D23AA5C93007C5C7A /* CommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E77C23AA5C93007C5C7A /* CommentsViewModel.swift */; };
 		F385E77F23AA5CD5007C5C7A /* CommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E77E23AA5CD5007C5C7A /* CommentsModel.swift */; };
-		F385E78223AA60EA007C5C7A /* TopPostCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E78123AA60EA007C5C7A /* TopPostCellTableViewCell.swift */; };
 		F385E78423AA6107007C5C7A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E78323AA6107007C5C7A /* CommentTableViewCell.swift */; };
 		F385E78723AA668C007C5C7A /* FavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E78623AA668C007C5C7A /* FavViewController.swift */; };
 		F385E78923AA67DE007C5C7A /* FavPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E78823AA67DE007C5C7A /* FavPostTableViewCell.swift */; };
@@ -87,7 +86,6 @@
 		F385E77A23AA4603007C5C7A /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F385E77C23AA5C93007C5C7A /* CommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewModel.swift; sourceTree = "<group>"; };
 		F385E77E23AA5CD5007C5C7A /* CommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsModel.swift; sourceTree = "<group>"; };
-		F385E78123AA60EA007C5C7A /* TopPostCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPostCellTableViewCell.swift; sourceTree = "<group>"; };
 		F385E78323AA6107007C5C7A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		F385E78623AA668C007C5C7A /* FavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavViewController.swift; sourceTree = "<group>"; };
 		F385E78823AA67DE007C5C7A /* FavPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavPostTableViewCell.swift; sourceTree = "<group>"; };
@@ -282,7 +280,6 @@
 		F385E78023AA60B8007C5C7A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				F385E78123AA60EA007C5C7A /* TopPostCellTableViewCell.swift */,
 				F385E78323AA6107007C5C7A /* CommentTableViewCell.swift */,
 			);
 			path = Cells;
@@ -528,7 +525,6 @@
 				F385E76523AA2827007C5C7A /* NetworkManger.swift in Sources */,
 				F385E76123AA2575007C5C7A /* BaseViewController.swift in Sources */,
 				F385E77F23AA5CD5007C5C7A /* CommentsModel.swift in Sources */,
-				F385E78223AA60EA007C5C7A /* TopPostCellTableViewCell.swift in Sources */,
 				F385E78423AA6107007C5C7A /* CommentTableViewCell.swift in Sources */,
 				F385E75E23AA2365007C5C7A /* PostsViewController.swift in Sources */,
 				F385E76A23AA286F007C5C7A /* ClientModel.swift in Sources */,

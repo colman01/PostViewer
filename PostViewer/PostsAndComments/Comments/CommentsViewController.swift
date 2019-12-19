@@ -66,15 +66,23 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
     
     fileprivate func setupTable() {
         DispatchQueue.main.async {
-            self.tableView.estimatedRowHeight = self.estimatedTableCellHeight
-            self.tableView.estimatedRowHeight = UITableView.automaticDimension
-            Observable.of(self.viewModel.comments).bind(to: self.tableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, element, cell) in
-                cell.body.text = element.body
-                cell.title.text = PostManager.shared.posts.filter { $0.id == element.postId }.first?.userId
-            }
-            .disposed(by: self.disposeBag)
             
-            self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
+            if self.viewModel.comments.isEmpty {
+                self.tableView.isHidden = true
+            } else {
+                self.tableView.isHidden = false
+                self.tableView.estimatedRowHeight = self.estimatedTableCellHeight
+                self.tableView.estimatedRowHeight = UITableView.automaticDimension
+                Observable.of(self.viewModel.comments).bind(to: self.tableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, element, cell) in
+                    cell.body.text = element.body
+                    cell.title.text = PostManager.shared.posts.filter { $0.id == element.postId }.first?.userId
+                }
+                .disposed(by: self.disposeBag)
+                
+                self.tableView.rx.setDelegate(self).disposed(by: self.disposeBag)
+            }
+            
+            
         }
     }
     
