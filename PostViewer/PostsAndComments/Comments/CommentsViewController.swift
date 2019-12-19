@@ -30,13 +30,11 @@ class CommentsViewController: BaseViewController, UITableViewDelegate {
         super.viewDidLoad()
         setupPost()
         getComments()
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     
